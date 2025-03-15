@@ -26,24 +26,24 @@ if (!file.exists()) {
             // Establish connection
             Connection conn = DriverManager.getConnection(url, user, password);
 
-            // Prepare SQL statement
+            
             String sql = "INSERT INTO person (name, image) values (?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            // Set values for the prepared statement
+            
             statement.setString(1, "wallpaper");
 
             // Set image file as Blob
             InputStream inputStream = new FileInputStream(new File(filePath));
             statement.setBlob(2, inputStream);
 
-            // Execute the update
+            
             int row = statement.executeUpdate();
             if (row > 0) {
                 System.out.println("Image inserted successfully.");
             }
 
-            // Close resources
+            
             inputStream.close();
             statement.close();
             conn.close();
